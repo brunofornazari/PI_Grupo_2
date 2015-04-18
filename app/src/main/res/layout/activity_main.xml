@@ -1,0 +1,46 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    tools:context=".MainActivity">
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/titulo"
+        android:layout_marginTop="15sp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/titulo" />
+
+    <ImageButton
+        android:layout_width="200sp"
+        android:layout_height="200sp"
+        android:id="@+id/mainBtn"
+        android:background="@drawable/round_button"
+        android:src="@drawable/main_btn1"
+        android:focusable="false"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:scaleType="fitCenter"
+        android:paddingLeft="20sp"
+        android:clickable="false" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageButton"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:src="@drawable/aboutus"
+        android:layout_alignRight="@+id/titulo"
+        android:layout_alignEnd="@+id/titulo"
+        android:background="#00796B"/>
+
+</RelativeLayout>
