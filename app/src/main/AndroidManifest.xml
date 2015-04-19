@@ -16,6 +16,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".aboutus"
+            android:label="@string/title_activity_aboutus" >
+
+        </activity>
+        <activity
+            android:name=".update_image"
+            android:label="@string/title_activity_update_image_2" >
+        </activity>
     </application>
 
 </manifest>

@@ -1,0 +1,45 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.bruno.myapplication.util.aboutus"
+    android:background="#e3e3e3">
+
+    <!-- The primary full-screen view. This can be replaced with whatever view
+         is needed to present your content, e.g. VideoView, SurfaceView,
+         TextureView, etc. -->
+
+    <!-- This FrameLayout insets its children based on system windows using
+         android:fitsSystemWindows. -->
+    <ImageButton
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageButton"
+        android:src="@drawable/aboutus"
+        android:background="#00796B"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <ImageView
+        android:layout_width="358dp"
+        android:layout_height="290dp"
+        android:id="@+id/imageView"
+        android:layout_gravity="center_horizontal|bottom"
+        android:src="@drawable/info"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="348dp"
+        android:layout_height="189dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="O objetivo de criar uma aplicação com manipualção de imagem digital é um grande desafio, que nos fez aprender e muito durante todo o processo de desenvolvimento, planejamento e finalização do projeto."
+        android:id="@+id/textView"
+        android:layout_gravity="center"
+        android:textColor="#0c0c0c"
+        android:textSize="20dp"
+        android:layout_below="@+id/imageButton"
+        android:layout_alignRight="@+id/imageView"
+        android:layout_alignEnd="@+id/imageView"
+        android:layout_marginTop="82dp" />
+</RelativeLayout>
