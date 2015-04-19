@@ -20,15 +20,6 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
-    <ImageView
-        android:layout_width="358dp"
-        android:layout_height="290dp"
-        android:id="@+id/imageView"
-        android:layout_gravity="center_horizontal|bottom"
-        android:src="@drawable/info"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
-
     <TextView
         android:layout_width="348dp"
         android:layout_height="189dp"
@@ -39,7 +30,43 @@
         android:textColor="#0c0c0c"
         android:textSize="20dp"
         android:layout_below="@+id/imageButton"
-        android:layout_alignRight="@+id/imageView"
-        android:layout_alignEnd="@+id/imageView"
-        android:layout_marginTop="82dp" />
+        android:layout_marginTop="82dp"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Bruno L. Fornazari - Ra: 20455934"
+        android:id="@+id/bruno"
+        android:layout_below="@+id/textView"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView"
+        android:textColor="#00796B"
+        android:textSize="24sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Roberto A. Gomes - Ra: 20440782"
+        android:id="@+id/roberto"
+        android:layout_below="@+id/nathan"
+        android:layout_alignLeft="@+id/nathan"
+        android:layout_alignStart="@+id/nathan"
+        android:textColor="#00796B"
+        android:textSize="24sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Filipe A. Nathan      - Ra: "
+        android:id="@+id/nathan"
+        android:layout_below="@+id/bruno"
+        android:layout_alignLeft="@+id/bruno"
+        android:layout_alignStart="@+id/bruno"
+        android:textColor="#00796B"
+        android:textSize="24sp" />
+
 </RelativeLayout>

@@ -62,7 +62,8 @@
                         android:id="@+id/textView2"
                         android:layout_gravity="center_horizontal|bottom"
                         android:layout_marginBottom="10dp"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textColor="#fff" />
                 </FrameLayout>
 
                 <FrameLayout
@@ -85,7 +86,8 @@
                         android:id="@+id/textView3"
                         android:layout_gravity="center_horizontal|bottom"
                         android:layout_marginBottom="10dp"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textColor="#fff" />
                 </FrameLayout>
 
                 <FrameLayout
@@ -107,7 +109,8 @@
                         android:id="@+id/textView4"
                         android:layout_gravity="center_horizontal|bottom"
                         android:layout_marginBottom="10dp"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textColor="#fff" />
                 </FrameLayout>
 
                 <FrameLayout
@@ -130,7 +133,8 @@
                         android:layout_gravity="center_horizontal|bottom"
                         android:layout_marginBottom="10dp"
                         android:textAlignment="center"
-                        android:singleLine="false" />
+                        android:singleLine="false"
+                        android:textColor="#fff" />
                 </FrameLayout>
 
                 <FrameLayout
@@ -152,7 +156,8 @@
                         android:id="@+id/textView6"
                         android:layout_gravity="center_horizontal|bottom"
                         android:layout_marginBottom="10dp"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textColor="#fff" />
                 </FrameLayout>
             </LinearLayout>
         </HorizontalScrollView>

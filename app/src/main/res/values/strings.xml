@@ -10,4 +10,5 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_update_image_2">update_image_2</string>
+    <string name="title_activity_image_done">Projeto Integrado</string>
 </resources>

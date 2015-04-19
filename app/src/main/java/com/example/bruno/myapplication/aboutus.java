@@ -1,17 +1,36 @@
 package com.example.bruno.myapplication;
 
+import android.graphics.Typeface;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-
+import android.widget.TextView;
 
 public class aboutus extends ActionBarActivity {
+    public void fontChange(TextView[] texto){
+        final String fontPath = "fonts/Lobster 1.4.otf";
+        Typeface tf = Typeface.createFromAsset(getAssets(), fontPath);
+        for(TextView txt: texto ) {
+            txt.setTypeface(tf);
+        }
+    }
 
+    public void fontChange(TextView texto){
+        final String fontPath = "fonts/Lobster 1.4.otf";
+        Typeface tf = Typeface.createFromAsset(getAssets(), fontPath);
+        texto.setTypeface(tf);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_us);
+        TextView bruno, nathan, roberto;
+        bruno = (TextView) findViewById(R.id.bruno);
+        nathan = (TextView) findViewById(R.id.nathan);
+        roberto = (TextView) findViewById(R.id.roberto);
+        TextView[] textos = {bruno, nathan, roberto};
+        fontChange(textos);
     }
 
 
