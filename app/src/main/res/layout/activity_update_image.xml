@@ -162,5 +162,31 @@
             </LinearLayout>
         </HorizontalScrollView>
 
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:text="&lt;"
+            android:background="@drawable/round_button2"
+            android:id="@+id/backButton"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="44dp"
+            android:onClick="backToHome"
+            android:textColor="#f3f3f3" />
+
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:text=">"
+            android:background="@drawable/round_button2"
+            android:id="@+id/fowardButton"
+            android:layout_alignBottom="@+id/backButton"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:onClick="toFinishScreen"
+            android:nestedScrollingEnabled="true"
+            android:textColor="#f3f3f3" />
+
     </RelativeLayout>
 </FrameLayout>

@@ -8,8 +8,56 @@
         class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
         className = "com.example.bruno.myapplication.MainActivity"/>
       <point      
-        x = "208"      
-        y = "168"/>
+        x = "192"      
+        y = "148"/>
+    </statePointEntry>
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.MenuState"      
+        className = "com.example.bruno.myapplication.aboutus"/>
+      <point      
+        x = "2440"      
+        y = "184"/>
+    </statePointEntry>
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        className = "com.example.bruno.myapplication.aboutus"/>
+      <point      
+        x = "1172"      
+        y = "184"/>
+    </statePointEntry>
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.MenuState"      
+        className = "com.example.bruno.myapplication.image_done"/>
+      <point      
+        x = "1768"      
+        y = "1480"/>
+    </statePointEntry>
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        className = "com.example.bruno.myapplication.image_done"/>
+      <point      
+        x = "500"      
+        y = "1480"/>
+    </statePointEntry>
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.MenuState"      
+        className = "com.example.bruno.myapplication.update_image"/>
+      <point      
+        x = "1768"      
+        y = "2860"/>
+    </statePointEntry>
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        className = "com.example.bruno.myapplication.update_image"/>
+      <point      
+        x = "500"      
+        y = "2860"/>
     </statePointEntry>
   </locations>
 </navigationModel>

@@ -13,7 +13,7 @@
     <ImageButton
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/imageButton"
+        android:id="@+id/aboutus"
         android:src="@drawable/aboutus"
         android:background="#00796B"
         android:layout_alignParentTop="true"
@@ -29,7 +29,7 @@
         android:layout_gravity="center"
         android:textColor="#0c0c0c"
         android:textSize="20dp"
-        android:layout_below="@+id/imageButton"
+        android:layout_below="@+id/aboutus"
         android:layout_marginTop="82dp"
         android:layout_centerHorizontal="true" />
 
@@ -61,12 +61,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Filipe A. Nathan      - Ra: "
+        android:text="Filipe A. Nathan     - Ra: 20477312"
         android:id="@+id/nathan"
         android:layout_below="@+id/bruno"
         android:layout_alignLeft="@+id/bruno"
         android:layout_alignStart="@+id/bruno"
         android:textColor="#00796B"
         android:textSize="24sp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Voltar"
+        android:id="@+id/backbutton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:background="#00796B"
+        android:textColor="#f3f3f3"
+        android:textSize="30sp"
+        android:textAllCaps="false"
+        android:clickable="true"
+        android:onClick="testData"/>
 
 </RelativeLayout>
