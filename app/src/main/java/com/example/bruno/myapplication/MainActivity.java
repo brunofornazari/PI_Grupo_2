@@ -84,7 +84,7 @@ public class MainActivity extends ActionBarActivity {
                 @Override
                 public void onClick(View v) {
                     Toast t = new Toast(v.getContext());
-                    t.makeText(v.getContext(), "Você não possui uma câmera :(", Toast.LENGTH_LONG).show();
+                    t.makeText(v.getContext(), "VocÃª nÃ£o possui uma cÃ¢mera :(", Toast.LENGTH_LONG).show();
                 }
             });
 
