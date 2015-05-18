@@ -2,6 +2,7 @@ package com.example.bruno.myapplication;
 
 import android.annotation.TargetApi;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
@@ -16,13 +17,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class MainActivity extends ActionBarActivity {
 
     ImageButton mainBtn;
 
-
+    public boolean hasCamera(){
+        return getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY);
+    }
     public void fontChange(TextView[] texto){
         final String fontPath = "fonts/Lobster 1.4.otf";
         Typeface tf = Typeface.createFromAsset(getAssets(), fontPath);
@@ -67,13 +71,24 @@ public class MainActivity extends ActionBarActivity {
         fontChange(aboutus);
 
         mainBtn = (ImageButton) findViewById(R.id.mainBtn);
-        mainBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               mainBtn.setBackgroundDrawable(getResources().getDrawable(R.drawable.round_button2));
-               toUpdateImage();
-            }
-        });
+        if(hasCamera()) {
+            mainBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mainBtn.setBackgroundDrawable(getResources().getDrawable(R.drawable.round_button2));
+                    toUpdateImage();
+                }
+            });
+        } else {
+            mainBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast t = new Toast(v.getContext());
+                    t.makeText(v.getContext(), "Você não possui uma câmera :(", Toast.LENGTH_LONG).show();
+                }
+            });
+
+        }
     }
 
 

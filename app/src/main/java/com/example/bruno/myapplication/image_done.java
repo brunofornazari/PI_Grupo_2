@@ -1,6 +1,8 @@
 package com.example.bruno.myapplication;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -8,13 +10,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class image_done extends ActionBarActivity {
 
     TextView finalMessage, aboutUs, startAgain;
-
+    static ImageView img;
     public void fontChange(TextView[] texto){
         final String fontPath = "fonts/Lobster 1.4.otf";
         Typeface tf = Typeface.createFromAsset(getAssets(), fontPath);
@@ -35,6 +39,15 @@ public class image_done extends ActionBarActivity {
         startActivity(i);
     }
 
+    public Bitmap testData(View v){
+        byte[] byteArray = getIntent().getByteArrayExtra("image");
+        Bitmap btm = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+        return btm;
+        //img = (ImageView) findViewById(R.id.imgfinal);
+        //img.setImageBitmap((Bitmap) data.get("image"));
+
+    }
+
     public void backToHome(View v){
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
@@ -44,6 +57,8 @@ public class image_done extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_done);
+        img = (ImageView) findViewById(R.id.imgfinal);
+        img.setImageBitmap(testData(new View(this)));
 
         finalMessage = (TextView) findViewById(R.id.finalMessage);
         aboutUs = (TextView) findViewById(R.id.aboutus);

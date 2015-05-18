@@ -23,7 +23,14 @@
             android:layout_marginRight="25dp"
             android:layout_marginBottom="25dp"
             android:background="#c3c3c3"
-            android:id="@+id/frameLayout"></FrameLayout>
+            android:id="@+id/frameLayout">
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/image_view_result"
+                android:layout_gravity="center" />
+        </FrameLayout>
 
         <HorizontalScrollView
             android:layout_width="fill_parent"
@@ -46,7 +53,9 @@
                 <FrameLayout
                     android:layout_width="80dp"
                     android:layout_height="100dp"
-                    android:layout_margin="15dp">
+                    android:layout_margin="15dp"
+                    android:nestedScrollingEnabled="false"
+                    android:id="@+id/ivtImage">
 
                     <ImageView
                         android:layout_width="fill_parent"
@@ -58,7 +67,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="Efeito 1"
+                        android:text="Negativo"
                         android:id="@+id/textView2"
                         android:layout_gravity="center_horizontal|bottom"
                         android:layout_marginBottom="10dp"

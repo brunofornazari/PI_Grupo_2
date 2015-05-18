@@ -5,7 +5,6 @@ import android.graphics.Typeface;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -64,15 +63,7 @@ public class aboutus extends ActionBarActivity {
         setContentView(R.layout.activity_about_us);
 
         Button back;
-        /*back = (Button)findViewById(R.id.backbutton);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-            }
-        });*/
-
-        setContentView(R.layout.activity_about_us);
         TextView bruno, nathan, roberto, btn;
         btn = (TextView)findViewById(R.id.backbutton);
         bruno = (TextView) findViewById(R.id.bruno);

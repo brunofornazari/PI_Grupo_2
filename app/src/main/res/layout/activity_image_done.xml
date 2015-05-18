@@ -10,7 +10,14 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:background="#c3c3c3"
-        android:id="@+id/imagemFinal"></FrameLayout>
+        android:id="@+id/imagemFinal">
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/imgfinal"
+            android:layout_gravity="center" />
+    </FrameLayout>
 
     <Button
         android:layout_width="fill_parent"
