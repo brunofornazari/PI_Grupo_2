@@ -37,8 +37,8 @@ public class update_image extends ActionBarActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == REQUEST_IMAGE_CAMERA && requestCode == RESULT_OK){
             Bundle extras = data.getExtras();
-            Bitmap photo = (Bitmap) extras.get("data");
-            imageview.setImageBitmap(photo);
+            btimg = (Bitmap) extras.get("data");
+            imageview.setImageBitmap(btimg);
         }
     }
 
@@ -57,10 +57,10 @@ public class update_image extends ActionBarActivity {
         setContentView(R.layout.activity_update_image);
 
         imageview = (ImageView) findViewById(R.id.image_view_result);
-        Drawable imgsrc = getResources().getDrawable(R.drawable.effect_icon);
-        btimg = ((BitmapDrawable) imgsrc).getBitmap();
-        imageview.setImageBitmap(btimg);
-
+        //Drawable imgsrc = getResources().getDrawable(R.drawable.effect_icon);
+        //btimg = ((BitmapDrawable) imgsrc).getBitmap();
+        //imageview.setImageBitmap(btimg);
+        launchCamera(new View(this));
         FrameLayout invert = (FrameLayout)findViewById(R.id.ivtImage);
         invert.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,7 +68,7 @@ public class update_image extends ActionBarActivity {
                 invertImage(btimg);
             }
         });
-        //launchCamera(new View(this));
+
     }
 
     @Override
