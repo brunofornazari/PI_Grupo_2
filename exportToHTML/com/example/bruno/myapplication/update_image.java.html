@@ -1,0 +1,128 @@
+<html>
+<head>
+<title>update_image.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { }
+.s2 { color: rgb(0,0,255); }
+.s3 { color: rgb(0,128,0); font-weight: bold; }
+.s4 { color: rgb(128,128,128); font-style: italic; }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+update_image.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+
+<span class="s0">package </span><span class="s1">com.example.bruno.myapplication; 
+ 
+</span><span class="s0">import </span><span class="s1">android.content.Intent; 
+</span><span class="s0">import </span><span class="s1">android.graphics.Bitmap; 
+</span><span class="s0">import </span><span class="s1">android.graphics.BitmapFactory; 
+</span><span class="s0">import </span><span class="s1">android.graphics.Color; 
+</span><span class="s0">import </span><span class="s1">android.graphics.drawable.BitmapDrawable; 
+</span><span class="s0">import </span><span class="s1">android.graphics.drawable.Drawable; 
+</span><span class="s0">import </span><span class="s1">android.provider.MediaStore; 
+</span><span class="s0">import </span><span class="s1">android.support.v7.app.ActionBarActivity; 
+</span><span class="s0">import </span><span class="s1">android.os.Bundle; 
+</span><span class="s0">import </span><span class="s1">android.view.Menu; 
+</span><span class="s0">import </span><span class="s1">android.view.MenuItem; 
+</span><span class="s0">import </span><span class="s1">android.view.View; 
+</span><span class="s0">import </span><span class="s1">android.widget.FrameLayout; 
+</span><span class="s0">import </span><span class="s1">android.widget.ImageView; 
+</span><span class="s0">import </span><span class="s1">android.widget.Toast; 
+ 
+</span><span class="s0">import </span><span class="s1">java.io.ByteArrayOutputStream; 
+ 
+ 
+</span><span class="s0">public class </span><span class="s1">update_image </span><span class="s0">extends </span><span class="s1">ActionBarActivity { 
+ 
+    </span><span class="s0">static final int </span><span class="s1">REQUEST_IMAGE_CAMERA = </span><span class="s2">1</span><span class="s1">; 
+    </span><span class="s0">static </span><span class="s1">ImageView imageview; 
+    </span><span class="s0">static </span><span class="s1">Bitmap btimg; 
+    </span><span class="s0">public void </span><span class="s1">backToHome(View v){ 
+        Intent i = </span><span class="s0">new </span><span class="s1">Intent(</span><span class="s0">this</span><span class="s1">, MainActivity.</span><span class="s0">class</span><span class="s1">); 
+        startActivity(i); 
+    } 
+ 
+    </span><span class="s0">public void </span><span class="s1">launchCamera(View v){ 
+        Intent intent = </span><span class="s0">new </span><span class="s1">Intent(MediaStore.ACTION_IMAGE_CAPTURE); 
+        startActivityForResult(intent, REQUEST_IMAGE_CAMERA); 
+    } 
+ 
+    @Override 
+    </span><span class="s0">protected void </span><span class="s1">onActivityResult(</span><span class="s0">int </span><span class="s1">requestCode, </span><span class="s0">int </span><span class="s1">resultCode, Intent data) { 
+        </span><span class="s0">if</span><span class="s1">(requestCode == REQUEST_IMAGE_CAMERA &amp;&amp; requestCode == </span><span class="s2">1</span><span class="s1">) { 
+            Bundle extras = data.getExtras(); 
+            Bitmap photo = (Bitmap) extras.get(</span><span class="s3">&quot;data&quot;</span><span class="s1">); 
+            btimg = photo; 
+            imageview.setImageBitmap(btimg); 
+        } 
+ 
+    } 
+ 
+    </span><span class="s0">public void </span><span class="s1">toFinishScreen(View v){ 
+        Intent i = </span><span class="s0">new </span><span class="s1">Intent(</span><span class="s0">this</span><span class="s1">, image_done.</span><span class="s0">class</span><span class="s1">); 
+        ByteArrayOutputStream stream = </span><span class="s0">new </span><span class="s1">ByteArrayOutputStream(); 
+        btimg.compress(Bitmap.CompressFormat.JPEG, </span><span class="s2">100</span><span class="s1">, stream); 
+        </span><span class="s0">byte</span><span class="s1">[] byteArray = stream.toByteArray(); 
+        i.putExtra(</span><span class="s3">&quot;image&quot;</span><span class="s1">, byteArray); 
+        startActivity(i); 
+    } 
+ 
+    @Override 
+    </span><span class="s0">protected void </span><span class="s1">onCreate(Bundle savedInstanceState) { 
+        </span><span class="s0">super</span><span class="s1">.onCreate(savedInstanceState); 
+        setContentView(R.layout.activity_update_image); 
+        imageview = (ImageView) findViewById(R.id.image_view_result); 
+        launchCamera(</span><span class="s0">new </span><span class="s1">View(</span><span class="s0">this</span><span class="s1">)); 
+        </span><span class="s4">//Drawable imgsrc = getResources().getDrawable(R.drawable.effect_icon);</span><span class="s1"> 
+        FrameLayout invert = (FrameLayout)findViewById(R.id.ivtImage); 
+        invert.setOnClickListener(</span><span class="s0">new </span><span class="s1">View.OnClickListener() { 
+            @Override 
+            </span><span class="s0">public void </span><span class="s1">onClick(View v) { 
+                invertImage(btimg); 
+            } 
+        }); 
+ 
+    } 
+ 
+    @Override 
+    </span><span class="s0">public boolean </span><span class="s1">onCreateOptionsMenu(Menu menu) { 
+ 
+        getMenuInflater().inflate(R.menu.menu_update_image_2, menu); 
+        </span><span class="s0">return true</span><span class="s1">; 
+    } 
+ 
+    </span><span class="s4">//FILTROS DA FOTO</span><span class="s1"> 
+    </span><span class="s0">public static void </span><span class="s1">invertImage(Bitmap original){ 
+        Bitmap finalImage = Bitmap.createBitmap(original.getWidth(), original.getHeight(), original.getConfig()); 
+ 
+        </span><span class="s0">int </span><span class="s1">A, R, G, B; 
+        </span><span class="s0">int </span><span class="s1">pixelColor; 
+        </span><span class="s0">int </span><span class="s1">h = original.getHeight(); 
+        </span><span class="s0">int </span><span class="s1">w = original.getWidth(); 
+ 
+        </span><span class="s0">for</span><span class="s1">(</span><span class="s0">int </span><span class="s1">y = </span><span class="s2">0 </span><span class="s1">; y &lt; h; y++){ 
+            </span><span class="s0">for</span><span class="s1">(</span><span class="s0">int </span><span class="s1">x = </span><span class="s2">0</span><span class="s1">; x &lt; w; x++){ 
+                pixelColor = original.getPixel(x, y); 
+                A = Color.alpha(pixelColor); 
+                R = </span><span class="s2">255 </span><span class="s1">- Color.red(pixelColor); 
+                G = </span><span class="s2">255 </span><span class="s1">- Color.green(pixelColor); 
+                B = </span><span class="s2">255 </span><span class="s1">- Color.blue(pixelColor); 
+ 
+                finalImage.setPixel(x, y, Color.argb(A,R,G,B)); 
+            } 
+        } 
+        btimg = finalImage; 
+        imageview.setImageBitmap(btimg); 
+    } 
+} 
+</span></pre>
+</body>
+</html>
