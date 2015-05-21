@@ -3,12 +3,14 @@ package com.example.bruno.myapplication;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.shapes.Shape;
 import android.os.Build;
+import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -19,11 +21,14 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
+
 
 public class MainActivity extends ActionBarActivity {
 
     ImageButton mainBtn;
-
+    Bitmap btimg;
+    final static int REQUEST_IMAGE_CAMERA = 1;
     public boolean hasCamera(){
         return getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY);
     }
@@ -62,6 +67,8 @@ public class MainActivity extends ActionBarActivity {
         startActivity(i);
     }
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,7 +81,7 @@ public class MainActivity extends ActionBarActivity {
         if(hasCamera()) {
             mainBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
+                public void onClick(final View v) {
                     mainBtn.setBackgroundDrawable(getResources().getDrawable(R.drawable.round_button2));
                     toUpdateImage();
                 }
@@ -84,7 +91,7 @@ public class MainActivity extends ActionBarActivity {
                 @Override
                 public void onClick(View v) {
                     Toast t = new Toast(v.getContext());
-                    t.makeText(v.getContext(), "Você não possui uma câmera :(", Toast.LENGTH_LONG).show();
+                    t.makeText(v.getContext(), "Voc? n?o possui uma c?mera :(", Toast.LENGTH_LONG).show();
                 }
             });
 
