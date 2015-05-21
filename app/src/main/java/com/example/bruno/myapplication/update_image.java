@@ -140,7 +140,7 @@ public class update_image extends ActionBarActivity {
                 G = Color.green(pixel);
                 B = Color.blue(pixel);
                 int gray = (int) (0.2989 * R + 0.5870 * G + 0.1140 * B);
-                
+
 
                 bmOut.setPixel(x, y, Color.argb(A, gray, gray, gray));
             }
@@ -148,4 +148,7 @@ public class update_image extends ActionBarActivity {
         btimg = bmOut;
         imageview.setImageBitmap(btimg);
     }
+
+
+
 }
