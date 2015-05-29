@@ -1,7 +1,6 @@
 package com.example.bruno.myapplication;
 
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -10,33 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class aboutus extends ActionBarActivity {
-    public void fontChange(TextView[] texto){
-        final String fontPath = "fonts/Lobster 1.4.otf";
-        Typeface tf = Typeface.createFromAsset(getAssets(), fontPath);
-        for(TextView txt: texto ) {
-            txt.setTypeface(tf);
-        }
-    }
-
-    public void fontChange(TextView texto){
-        final String fontPath = "fonts/Lobster 1.4.otf";
-        Typeface tf = Typeface.createFromAsset(getAssets(), fontPath);
-        texto.setTypeface(tf);
-    }
-
-    public void fontChange(Button[] texto){
-        final String fontPath = "fonts/Lobster 1.4.otf";
-        Typeface tf = Typeface.createFromAsset(getAssets(), fontPath);
-        for(TextView txt: texto ) {
-            txt.setTypeface(tf);
-        }
-    }
-
-    public void fontChange(Button texto){
-        final String fontPath = "fonts/Lobster 1.4.otf";
-        Typeface tf = Typeface.createFromAsset(getAssets(), fontPath);
-        texto.setTypeface(tf);
-    }
+    Fonte fonte = new Fonte(this);
 
     public void toHome(View v){
         Intent i = new Intent(this, MainActivity.class);
@@ -70,7 +43,7 @@ public class aboutus extends ActionBarActivity {
         nathan = (TextView) findViewById(R.id.nathan);
         roberto = (TextView) findViewById(R.id.roberto);
         TextView[] textos = {bruno, nathan, roberto, btn};
-        fontChange(textos);
+        fonte.fontChange(textos);
     }
 
 

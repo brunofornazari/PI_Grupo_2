@@ -3,36 +3,19 @@ package com.example.bruno.myapplication;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Typeface;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 public class image_done extends ActionBarActivity {
 
     TextView finalMessage, aboutUs, startAgain;
     static ImageView img;
-    public void fontChange(TextView[] texto){
-        final String fontPath = "fonts/Lobster 1.4.otf";
-        Typeface tf = Typeface.createFromAsset(getAssets(), fontPath);
-        for(TextView txt: texto ) {
-            txt.setTypeface(tf);
-        }
-    }
-
-    public void fontChange(TextView texto){
-        final String fontPath = "fonts/Lobster 1.4.otf";
-        Typeface tf = Typeface.createFromAsset(getAssets(), fontPath);
-        texto.setTypeface(tf);
-    }
-
+    Fonte fonte = new Fonte(this);
     public void toAboutUs(View view){
         Intent i = new Intent(this, aboutus.class);
         i.putExtra("final", true);
@@ -64,7 +47,7 @@ public class image_done extends ActionBarActivity {
         aboutUs = (TextView) findViewById(R.id.aboutus);
         startAgain = (TextView) findViewById(R.id.startAgain);
         TextView[] texto = {finalMessage, aboutUs, startAgain};
-        fontChange(texto);
+        fonte.fontChange(texto);
 
     }
 

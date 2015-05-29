@@ -2,22 +2,15 @@ package com.example.bruno.myapplication;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.Toast;
-
 import java.io.ByteArrayOutputStream;
-
 
 public class update_image extends ActionBarActivity {
 
@@ -147,5 +140,14 @@ public class update_image extends ActionBarActivity {
         }
         btimg = bmOut;
         imageview.setImageBitmap(btimg);
+    }
+
+    public static void sobel_filter(Bitmap imagem){
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        imagem.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        byte[] src = stream.toByteArray();
+        byte[] dst;
+
+
     }
 }
