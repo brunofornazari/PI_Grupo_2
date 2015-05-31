@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import java.io.ByteArrayOutputStream;
-
+import org.opencv.*;
 public class update_image extends ActionBarActivity {
 
     static final int REQUEST_IMAGE_CAMERA = 1;
