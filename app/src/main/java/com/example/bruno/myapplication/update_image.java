@@ -3,15 +3,21 @@ package com.example.bruno.myapplication;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.media.Image;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import java.io.ByteArrayOutputStream;
-import org.opencv.*;
+import org.opencv.android.OpenCVLoader;
+
+import static com.example.bruno.myapplication.Convolucao.computeConvolution3x3;
+
 public class update_image extends ActionBarActivity {
 
     static final int REQUEST_IMAGE_CAMERA = 1;
@@ -22,6 +28,7 @@ public class update_image extends ActionBarActivity {
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
     }
+
 
     public void launchCamera(View v){
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -54,10 +61,15 @@ public class update_image extends ActionBarActivity {
         setContentView(R.layout.activity_update_image);
         imageview = (ImageView) findViewById(R.id.image_view_result);
         launchCamera(new View(this));
+        //ImageView iv = (ImageView) findViewById(R.id.imageView2);
+        //Bitmap btm = ((BitmapDrawable)iv.getDrawable()).getBitmap();
         //Drawable imgsrc = getResources().getDrawable(R.drawable.effect_icon);
         FrameLayout invert = (FrameLayout)findViewById(R.id.ivtImage);
         FrameLayout mono = (FrameLayout)findViewById(R.id.monoChrome);
         FrameLayout origin = (FrameLayout)findViewById(R.id.original);
+        FrameLayout decH = (FrameLayout)findViewById(R.id.decHoriz);
+        FrameLayout decV = (FrameLayout)findViewById(R.id.decVert);
+        FrameLayout lap = (FrameLayout)findViewById(R.id.laplas);
         origin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,10 +89,29 @@ public class update_image extends ActionBarActivity {
             @Override
             public void onClick(View view) {
                 createBlackAndWhite(original);
-
             }
         });
 
+        decH.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                deteccaoH(original);
+            }
+        });
+
+        decV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                deteccaoV(original);
+            }
+        });
+
+        lap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                laplaciano(original);
+            }
+        });
     }
 
     @Override
@@ -141,13 +172,41 @@ public class update_image extends ActionBarActivity {
         btimg = bmOut;
         imageview.setImageBitmap(btimg);
     }
+    public static void deteccaoH(Bitmap src) {
+        double[][] SharpConfig = new double[][] {
+                { 1, 2, 1},
+                { 0, 0, 0 },
+                { -1, -2, -1}
+        };
+        Convolucao convMatrix = new Convolucao(3);
+        convMatrix.applyConfig(SharpConfig);
 
-    public static void sobel_filter(Bitmap imagem){
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        imagem.compress(Bitmap.CompressFormat.JPEG, 100, stream);
-        byte[] src = stream.toByteArray();
-        byte[] dst;
+        btimg = Convolucao.computeConvolution3x3(src, convMatrix);
+        imageview.setImageBitmap(btimg);
+    }
+    public static void deteccaoV(Bitmap src) {
+        double[][] SharpConfig = new double[][] {
+                { -1, 0, 1},
+                { -2, 0, 2},
+                { -1, 0, 1}
+        };
+        Convolucao convMatrix = new Convolucao(3);
+        convMatrix.applyConfig(SharpConfig);
 
+        btimg = Convolucao.computeConvolution3x3(src, convMatrix);
+        imageview.setImageBitmap(btimg);
+    }
 
+    public static void laplaciano(Bitmap src) {
+        double[][] SharpConfig = new double[][] {
+                { 0, -1, 0},
+                { -1, 4 , -1},
+                { 0, -1, 0}
+        };
+        Convolucao convMatrix = new Convolucao(3);
+        convMatrix.applyConfig(SharpConfig);
+
+        btimg = Convolucao.computeConvolution3x3(src, convMatrix);
+        imageview.setImageBitmap(btimg);
     }
 }
