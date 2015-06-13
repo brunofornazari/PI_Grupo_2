@@ -12,7 +12,8 @@
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="589dp"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:id="@+id/mainLayout">
 
         <FrameLayout
             android:layout_width="300dp"
@@ -197,6 +198,31 @@
                         android:textAlignment="center"
                         android:textColor="#fff" />
                 </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="80dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="15dp"
+                    android:id="@+id/seekgray" >
+
+                    <ImageView
+                        android:layout_width="fill_parent"
+                        android:layout_height="70dp"
+                        android:id="@+id/imageView7"
+                        android:src="@drawable/laplaciano" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="Histograma"
+                        android:id="@+id/textView8"
+                        android:layout_gravity="center_horizontal|bottom"
+                        android:layout_marginBottom="10dp"
+                        android:textAlignment="center"
+                        android:textColor="#fff" />
+                </FrameLayout>
+
             </LinearLayout>
         </HorizontalScrollView>
 

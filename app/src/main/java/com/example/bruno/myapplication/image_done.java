@@ -9,6 +9,9 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.io.ByteArrayOutputStream;
 
 
 public class image_done extends ActionBarActivity {
@@ -16,9 +19,13 @@ public class image_done extends ActionBarActivity {
     TextView finalMessage, aboutUs, startAgain;
     static ImageView img;
     Fonte fonte = new Fonte(this);
+    static Bitmap btimg;
     public void toAboutUs(View view){
         Intent i = new Intent(this, aboutus.class);
-        i.putExtra("final", true);
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        btimg.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        byte[] byteArray = stream.toByteArray();
+        i.putExtra("image", byteArray);
         startActivity(i);
     }
 
@@ -40,8 +47,11 @@ public class image_done extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_done);
+        Toast t = new Toast(this);
+        t.makeText(this, "Sua imagem foi salva!", Toast.LENGTH_LONG).show();
         img = (ImageView) findViewById(R.id.imgfinal);
-        img.setImageBitmap(testData(new View(this)));
+        btimg = testData(new View(this));
+        img.setImageBitmap(btimg);
 
         finalMessage = (TextView) findViewById(R.id.finalMessage);
         aboutUs = (TextView) findViewById(R.id.aboutus);
