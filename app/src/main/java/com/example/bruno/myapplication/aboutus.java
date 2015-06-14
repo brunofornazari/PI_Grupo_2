@@ -1,43 +1,21 @@
 package com.example.bruno.myapplication;
 
 import android.content.Intent;
-import android.graphics.Typeface;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.ByteArrayOutputStream;
+
 public class aboutus extends ActionBarActivity {
-    public void fontChange(TextView[] texto){
-        final String fontPath = "fonts/Lobster 1.4.otf";
-        Typeface tf = Typeface.createFromAsset(getAssets(), fontPath);
-        for(TextView txt: texto ) {
-            txt.setTypeface(tf);
-        }
-    }
-
-    public void fontChange(TextView texto){
-        final String fontPath = "fonts/Lobster 1.4.otf";
-        Typeface tf = Typeface.createFromAsset(getAssets(), fontPath);
-        texto.setTypeface(tf);
-    }
-
-    public void fontChange(Button[] texto){
-        final String fontPath = "fonts/Lobster 1.4.otf";
-        Typeface tf = Typeface.createFromAsset(getAssets(), fontPath);
-        for(TextView txt: texto ) {
-            txt.setTypeface(tf);
-        }
-    }
-
-    public void fontChange(Button texto){
-        final String fontPath = "fonts/Lobster 1.4.otf";
-        Typeface tf = Typeface.createFromAsset(getAssets(), fontPath);
-        texto.setTypeface(tf);
-    }
-
+    Fonte fonte = new Fonte(this);
+    static Bitmap btimg;
     public void toHome(View v){
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
@@ -45,7 +23,17 @@ public class aboutus extends ActionBarActivity {
 
     public void toFinal(View v){
         Intent i = new Intent(this, image_done.class);
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        btimg.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        byte[] byteArray = stream.toByteArray();
+        i.putExtra("image", byteArray);
         startActivity(i);
+    }
+
+    public Bitmap dataSet(View v){
+        byte[] byteArray = getIntent().getByteArrayExtra("image");
+        Bitmap btm = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+        return btm;
     }
 
     public void testData(View v){
@@ -61,16 +49,15 @@ public class aboutus extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_us);
-
+        btimg = dataSet(new View(this));
         Button back;
-
         TextView bruno, nathan, roberto, btn;
         btn = (TextView)findViewById(R.id.backbutton);
         bruno = (TextView) findViewById(R.id.bruno);
         nathan = (TextView) findViewById(R.id.nathan);
         roberto = (TextView) findViewById(R.id.roberto);
         TextView[] textos = {bruno, nathan, roberto, btn};
-        fontChange(textos);
+        fonte.fontChange(textos);
     }
 
 

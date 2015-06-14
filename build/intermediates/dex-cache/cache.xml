@@ -29,5 +29,12 @@
         sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
         <dex dex="C:\Users\Dell\.AndroidStudio1.2\PI_Grupo_2\app\build\intermediates\pre-dexed\debug\support-annotations-22.0.0-4672128a76a04de232e48610948a50d233cc3781.jar" />
     </item>
+    <item
+        jar="C:\Users\Dell\.AndroidStudio1.2\PI_Grupo_2\app\build\intermediates\exploded-aar\PI_Grupo_2\opencv-android\unspecified\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="1ae43e369698a00f01e0b2a524d6ebca1e60cd6a">
+        <dex dex="C:\Users\Dell\.AndroidStudio1.2\PI_Grupo_2\app\build\intermediates\pre-dexed\debug\classes-df5645fedf849b08ecc13b3e4d05e6bfe2bedfb8.jar" />
+    </item>
 
 </items>

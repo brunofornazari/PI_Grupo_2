@@ -12,7 +12,8 @@
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="589dp"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:id="@+id/mainLayout">
 
         <FrameLayout
             android:layout_width="300dp"
@@ -86,7 +87,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="70dp"
                         android:id="@+id/imageView2"
-                        android:src="@drawable/effect_icon" />
+                        android:src="@drawable/negativo" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -111,7 +112,7 @@
                         android:layout_height="70dp"
                         android:id="@+id/imageView3"
                         android:contentDescription="Efeito"
-                        android:src="@drawable/effect_icon" />
+                        android:src="@drawable/mono" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -128,19 +129,20 @@
                 <FrameLayout
                     android:layout_width="80dp"
                     android:layout_height="100dp"
-                    android:layout_margin="15dp" >
+                    android:layout_margin="15dp"
+                    android:id="@+id/decHoriz">
 
                     <ImageView
                         android:layout_width="fill_parent"
                         android:layout_height="70dp"
                         android:id="@+id/imageView4"
-                        android:src="@drawable/effect_icon"/>
+                        android:src="@drawable/bordah"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="Efeito 3"
+                        android:text="Bordas H"
                         android:id="@+id/textView4"
                         android:layout_gravity="center_horizontal|bottom"
                         android:layout_marginBottom="10dp"
@@ -151,19 +153,20 @@
                 <FrameLayout
                     android:layout_width="80dp"
                     android:layout_height="100dp"
-                    android:layout_margin="15dp" >
+                    android:layout_margin="15dp"
+                    android:id="@+id/decVert">
 
                     <ImageView
                         android:layout_width="fill_parent"
                         android:layout_height="70dp"
                         android:id="@+id/imageView5"
-                        android:src="@drawable/effect_icon"/>
+                        android:src="@drawable/bordav"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="Efeito 4"
+                        android:text="Bordas V"
                         android:id="@+id/textView5"
                         android:layout_gravity="center_horizontal|bottom"
                         android:layout_marginBottom="10dp"
@@ -175,25 +178,51 @@
                 <FrameLayout
                     android:layout_width="80dp"
                     android:layout_height="100dp"
-                    android:layout_margin="15dp" >
+                    android:layout_margin="15dp"
+                    android:id="@+id/laplas">
 
                     <ImageView
                         android:layout_width="fill_parent"
                         android:layout_height="70dp"
                         android:id="@+id/imageView6"
-                        android:src="@drawable/effect_icon"/>
+                        android:src="@drawable/laplaciano"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="Efeito 5"
+                        android:text="Laplaciano"
                         android:id="@+id/textView6"
                         android:layout_gravity="center_horizontal|bottom"
                         android:layout_marginBottom="10dp"
                         android:textAlignment="center"
                         android:textColor="#fff" />
                 </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="80dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="15dp"
+                    android:id="@+id/seekgray" >
+
+                    <ImageView
+                        android:layout_width="fill_parent"
+                        android:layout_height="70dp"
+                        android:id="@+id/imageView7"
+                        android:src="@drawable/laplaciano" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="Histograma"
+                        android:id="@+id/textView8"
+                        android:layout_gravity="center_horizontal|bottom"
+                        android:layout_marginBottom="10dp"
+                        android:textAlignment="center"
+                        android:textColor="#fff" />
+                </FrameLayout>
+
             </LinearLayout>
         </HorizontalScrollView>
 
