@@ -3,6 +3,7 @@ package com.example.bruno.myapplication;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.media.MediaPlayer;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -47,6 +48,7 @@ public class MainActivity extends ActionBarActivity {
                 @Override
                 public void onClick(final View v) {
                     mainBtn.setBackgroundDrawable(getResources().getDrawable(R.drawable.round_button2));
+                    //final MediaPlayer mp = MediaPlayer.create(this, );
                     toUpdateImage();
                 }
             });
