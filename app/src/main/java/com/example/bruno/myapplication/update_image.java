@@ -1,25 +1,19 @@
 package com.example.bruno.myapplication;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
-import android.media.Image;
+import android.media.MediaPlayer;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.transition.TransitionManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.SeekBar;
 
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.LoaderCallbackInterface;
@@ -28,21 +22,16 @@ import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfFloat;
 import org.opencv.core.MatOfInt;
-import org.opencv.core.Point;
 import org.opencv.core.Scalar;
-import org.opencv.highgui.Highgui;
 import org.opencv.imgproc.*;
 import org.opencv.android.Utils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 
 import org.opencv.android.OpenCVLoader;
 import org.opencv.*;
@@ -66,7 +55,8 @@ public class update_image extends ActionBarActivity {
     static ImageView imageview;
     static Bitmap btimg;
     static Bitmap original;
-    static Boolean seekBarStatus = false;
+    private MediaPlayer btnClick;
+    //static Boolean seekBarStatus = false;
     private static final String TAG = "MyActivity";
 
     private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
@@ -105,9 +95,9 @@ public class update_image extends ActionBarActivity {
                     Bundle extras = data.getExtras();
                     Bitmap photo = (Bitmap) extras.get("data");
 
-                    original = photo;
-                    btimg = photo;
-                    imageview.setImageBitmap(original);
+                    original = photo.copy(photo.getConfig(), true);
+                    btimg = photo.copy(photo.getConfig(), true);
+                    imageview.setImageBitmap(btimg);
                 } else {
                     backToHome(getCurrentFocus());
                 }
@@ -137,6 +127,27 @@ public class update_image extends ActionBarActivity {
         startActivity(i);
     }
 
+    public void stop() {
+        if (btnClick != null) {
+            btnClick.release();
+            btnClick = null;
+        }
+    }
+
+    public void play(Context c, int rid) {
+        stop();
+
+        btnClick = MediaPlayer.create(c, rid);
+        btnClick.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mediaPlayer) {
+                stop();
+            }
+        });
+
+        btnClick.start();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -151,11 +162,13 @@ public class update_image extends ActionBarActivity {
         FrameLayout decV = (FrameLayout)findViewById(R.id.decVert);
         FrameLayout lap = (FrameLayout)findViewById(R.id.laplas);
         FrameLayout sgray = (FrameLayout)findViewById(R.id.seekgray);
-        btimg = original;
+
+        //btimg = Bitmap.createBitmap(original);
         origin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                btimg = original;
+                play(getApplicationContext(), R.raw.sound);
+                btimg = original.copy(original.getConfig(), true);
                 imageview.setImageBitmap(btimg);
             }
         });
@@ -163,35 +176,45 @@ public class update_image extends ActionBarActivity {
         invert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                invertImage(original);
+                //invertImage(original);
+                play(getApplicationContext(), R.raw.sound);
+                negativeOpenCv(original);
             }
         });
 
         mono.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                createBlackAndWhite(original);
+                play(getApplicationContext(), R.raw.sound);
+                //createBlackAndWhite(original);
+                monoOpencv(original);
             }
         });
 
         decH.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                deteccaoH(original);
+                play(getApplicationContext(), R.raw.sound);
+                //deteccaoH(original);
+                detSobelVOpenCv(original);
             }
         });
 
         decV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                deteccaoV(original);
+                play(getApplicationContext(), R.raw.sound);
+                //deteccaoV(original);
+                detSobelHOpenCv(original);
             }
         });
 
         lap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                laplaciano(original);
+                play(getApplicationContext(), R.raw.sound);
+                //laplaciano(original);
+                laplascOpenCv(original);
             }
         });
 
@@ -268,6 +291,24 @@ public class update_image extends ActionBarActivity {
         imageview.setImageBitmap(btimg);
     }
 
+    public void negativeOpenCv(Bitmap src){
+        Bitmap temp = Bitmap.createBitmap(src);
+        Mat source = new Mat();
+        Utils.bitmapToMat(temp, source);
+        Mat dest = new Mat(source.rows(), source.cols(), source.type());
+
+        Mat invertcolormatrix= new Mat(source.rows(),source.cols(), source.type(), new Scalar(255,255,255));
+
+        Core.subtract(invertcolormatrix, source, dest);
+
+        updateView(dest);
+    }
+
+    public void updateView(Mat upv){
+        Utils.matToBitmap(upv, btimg);
+        imageview.setImageBitmap(btimg);
+    }
+
     public static void createBlackAndWhite(Bitmap src) {
         int width = src.getWidth();
         int height = src.getHeight();
@@ -295,6 +336,17 @@ public class update_image extends ActionBarActivity {
         btimg = bmOut;
         imageview.setImageBitmap(btimg);
     }
+
+    public void monoOpencv(Bitmap src){
+        Bitmap temp = Bitmap.createBitmap(src);
+        Mat source = new Mat();
+        Utils.bitmapToMat(temp, source);
+        Mat dest = new Mat(source.rows(), source.cols(), source.type());
+
+        Imgproc.cvtColor(source, dest, Imgproc.COLOR_RGB2GRAY);
+        updateView(dest);
+    }
+
     public static void deteccaoH(Bitmap src) {
         double[][] SharpConfig = new double[][] {
                 { 1, 2, 1},
@@ -307,6 +359,19 @@ public class update_image extends ActionBarActivity {
         btimg = Convolucao.computeConvolution3x3(src, convMatrix);
         imageview.setImageBitmap(btimg);
     }
+
+    public void detSobelHOpenCv(Bitmap src){
+        Bitmap temp = Bitmap.createBitmap(src);
+        Mat source = new Mat();
+        Utils.bitmapToMat(temp, source);
+        Mat dest = new Mat(source.rows(), source.cols(), source.type());
+
+        Imgproc.cvtColor(source, dest, Imgproc.COLOR_RGB2GRAY);
+        Mat grad = new Mat();
+        Imgproc.Sobel(dest, grad, CvType.CV_8U, 0, 1, 3, 1, 0);
+        updateView(grad);
+    }
+
     public static void deteccaoV(Bitmap src) {
         double[][] SharpConfig = new double[][] {
                 { -1, 0, 1},
@@ -318,6 +383,18 @@ public class update_image extends ActionBarActivity {
 
         btimg = Convolucao.computeConvolution3x3(src, convMatrix);
         imageview.setImageBitmap(btimg);
+    }
+
+    public void detSobelVOpenCv(Bitmap src){
+        Bitmap temp = Bitmap.createBitmap(src);
+        Mat source = new Mat();
+        Utils.bitmapToMat(temp, source);
+        Mat dest = new Mat(source.rows(), source.cols(), source.type());
+
+        Imgproc.cvtColor(source, dest, Imgproc.COLOR_RGB2GRAY);
+        Mat grad = new Mat();
+        Imgproc.Sobel(dest, grad, CvType.CV_8U, 1, 0, 3, 1, 0);
+        updateView(grad);
     }
 
     public static void laplaciano(Bitmap src) {
@@ -333,90 +410,13 @@ public class update_image extends ActionBarActivity {
         imageview.setImageBitmap(btimg);
     }
 
-    public static ArrayList<int[]> imageHistogram(Bitmap input) {
+    public void laplascOpenCv(Bitmap src){
+        Bitmap temp = Bitmap.createBitmap(src);
+        Mat source = new Mat();
+        Utils.bitmapToMat(temp, source);
+        Mat dest = new Mat(source.rows(), source.cols(), source.type());
 
-        int[] rhistogram = new int[256];
-        int[] ghistogram = new int[256];
-        int[] bhistogram = new int[256];
-
-        for(int i=0; i<rhistogram.length; i++) rhistogram[i] = 0;
-        for(int i=0; i<ghistogram.length; i++) ghistogram[i] = 0;
-        for(int i=0; i<bhistogram.length; i++) bhistogram[i] = 0;
-
-        for(int i=0; i<input.getWidth(); i++) {
-            for(int j=0; j<input.getHeight(); j++) {
-
-                int red = Color.red(input.getPixel(i, j));
-                int green = Color.green(input.getPixel (i, j));
-                int blue = Color.blue(input.getPixel (i, j));
-
-                // Increase the values of colors
-                rhistogram[red]++; ghistogram[green]++; bhistogram[blue]++;
-
-            }
-        }
-
-        ArrayList<int[]> hist = new ArrayList<int[]>();
-        hist.add(rhistogram);
-        hist.add(ghistogram);
-        hist.add(bhistogram);
-
-        return hist;
-
-    }
-
-    private static ArrayList<int[]> histogramEqualizationLUT(Bitmap input) {
-
-        // Get an image histogram - calculated values by R, G, B channels
-        ArrayList<int[]> imageHist = imageHistogram(input);
-
-        // Create the lookup table
-        ArrayList<int[]> imageLUT = new ArrayList<int[]>();
-
-        // Fill the lookup table
-        int[] rhistogram = new int[256];
-        int[] ghistogram = new int[256];
-        int[] bhistogram = new int[256];
-
-        for(int i=0; i<rhistogram.length; i++) rhistogram[i] = 0;
-        for(int i=0; i<ghistogram.length; i++) ghistogram[i] = 0;
-        for(int i=0; i<bhistogram.length; i++) bhistogram[i] = 0;
-
-        long sumr = 0;
-        long sumg = 0;
-        long sumb = 0;
-
-        // Calculate the scale factor
-        float scale_factor = (float) (255.0 / (input.getWidth() * input.getHeight()));
-
-        for(int i=0; i<rhistogram.length; i++) {
-            sumr += imageHist.get(0)[i];
-            int valr = (int) (sumr * scale_factor);
-            if(valr > 255) {
-                rhistogram[i] = 255;
-            }
-            else rhistogram[i] = valr;
-
-            sumg += imageHist.get(1)[i];
-            int valg = (int) (sumg * scale_factor);
-            if(valg > 255) {
-                ghistogram[i] = 255;
-            }
-            else ghistogram[i] = valg;
-
-            sumb += imageHist.get(2)[i];
-            int valb = (int) (sumb * scale_factor);
-            if(valb > 255) {
-                bhistogram[i] = 255;
-            }
-            else bhistogram[i] = valb;
-        }
-
-        imageLUT.add(rhistogram);
-        imageLUT.add(ghistogram);
-        imageLUT.add(bhistogram);
-
-        return imageLUT;
-
+        Imgproc.Laplacian(source, dest, -1);
+        updateView(dest);
     }
 }
