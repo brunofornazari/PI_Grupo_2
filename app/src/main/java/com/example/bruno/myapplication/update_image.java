@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.LoaderCallbackInterface;
@@ -57,6 +58,7 @@ public class update_image extends ActionBarActivity {
     static Bitmap original;
     private MediaPlayer btnClick;
     //static Boolean seekBarStatus = false;
+    static SeekBar bright;
     private static final String TAG = "MyActivity";
 
     private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
@@ -136,7 +138,7 @@ public class update_image extends ActionBarActivity {
 
     public void play(Context c, int rid) {
         stop();
-
+        bright.setProgress(5);
         btnClick = MediaPlayer.create(c, rid);
         btnClick.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
@@ -255,6 +257,32 @@ public class update_image extends ActionBarActivity {
                 Utils.matToBitmap(histImage, bm);
 
                 imageview.setImageBitmap(bm);
+            }
+        });
+
+        bright = (SeekBar) findViewById(R.id.seekBar);
+        bright.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                Mat source = new Mat();
+                Mat dest = new Mat();
+                Utils.bitmapToMat(btimg, source);
+                int valor = i/2;
+                if(valor < 2.5) {
+                    valor = (valor/2)*(-1);
+                }
+                source.convertTo(dest, -1, valor, 50);
+                updateView(dest);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
             }
         });
     }
