@@ -49,7 +49,9 @@ public class aboutus extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_us);
-        btimg = dataSet(new View(this));
+        if(getIntent().getExtras() != null){
+            btimg = dataSet(new View(this));
+        }
         Button back;
         TextView bruno, nathan, roberto, btn;
         btn = (TextView)findViewById(R.id.backbutton);

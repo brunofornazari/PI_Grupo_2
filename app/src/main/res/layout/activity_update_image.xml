@@ -16,15 +16,15 @@
         android:id="@+id/mainLayout">
 
         <FrameLayout
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="100dp"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
-            android:layout_marginBottom="25dp"
             android:background="#c3c3c3"
-            android:id="@+id/frameLayout">
+            android:id="@+id/frameLayout"
+            android:layout_below="@+id/fowardButton"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="30dp">
 
             <ImageView
                 android:layout_width="fill_parent"
@@ -33,15 +33,72 @@
                 android:layout_gravity="center" />
         </FrameLayout>
 
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="160dp">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="195dp"
+                android:layout_marginLeft="10dp"
+                android:paddingLeft="8dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageView8"
+                    android:src="@drawable/bminus"
+                    android:layout_gravity="center" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="285dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal">
+
+                <SeekBar
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/seekBar"
+                    android:max="10"
+                    android:progress="5"
+                    android:layout_weight="1"
+                    android:layout_above="@+id/horizontalScrollView"
+                    android:layout_alignEnd="@+id/fowardButton"
+                    android:layout_gravity="center" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="195dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageView10"
+                    android:src="@drawable/bplus"
+                    android:layout_gravity="center" />
+            </LinearLayout>
+        </LinearLayout>
+
         <HorizontalScrollView
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="150dp"
             android:id="@+id/horizontalScrollView"
             android:background="#00796B"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
-            android:layout_below="@+id/frameLayout">
+            android:layout_marginBottom="35dp">
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -49,7 +106,8 @@
                 android:layout_height="fill_parent"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:gravity="center">
+                android:gravity="center"
+                android:paddingTop="20dp">
 
                 <FrameLayout
                     android:layout_width="80dp"
@@ -83,12 +141,6 @@
                     android:nestedScrollingEnabled="false"
                     android:id="@+id/ivtImage">
 
-                    <ImageView
-                        android:layout_width="fill_parent"
-                        android:layout_height="70dp"
-                        android:id="@+id/imageView2"
-                        android:src="@drawable/negativo" />
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -99,6 +151,12 @@
                         android:layout_marginBottom="10dp"
                         android:textAlignment="center"
                         android:textColor="#fff" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageView2"
+                        android:src="@drawable/negativo" />
                 </FrameLayout>
 
                 <FrameLayout
