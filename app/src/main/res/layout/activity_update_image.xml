@@ -33,15 +33,62 @@
                 android:layout_gravity="center" />
         </FrameLayout>
 
-        <SeekBar
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/seekBar"
-            android:max="10"
-            android:progress="5"
-            android:layout_weight="1"
-            android:layout_above="@+id/horizontalScrollView"
-            android:layout_alignEnd="@+id/fowardButton" />
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="160dp">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="195dp"
+                android:layout_marginLeft="10dp"
+                android:paddingLeft="8dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageView8"
+                    android:src="@drawable/bminus"
+                    android:layout_gravity="center" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="285dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal">
+
+                <SeekBar
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/seekBar"
+                    android:max="10"
+                    android:progress="5"
+                    android:layout_weight="1"
+                    android:layout_above="@+id/horizontalScrollView"
+                    android:layout_alignEnd="@+id/fowardButton"
+                    android:layout_gravity="center" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="195dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageView10"
+                    android:src="@drawable/bplus"
+                    android:layout_gravity="center" />
+            </LinearLayout>
+        </LinearLayout>
 
         <HorizontalScrollView
             android:layout_width="fill_parent"
